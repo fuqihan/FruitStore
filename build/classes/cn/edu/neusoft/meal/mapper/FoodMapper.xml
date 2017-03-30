@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="cn.edu.neusoft.meal.mapper.FoodDao">
+   <select id="getHotFoods" resultType="cn.edu.neusoft.meal.domain.Food">
+   select * from food order by hits limit 1,4
+   </select>
+    <select id="getSalesFoods" resultType="cn.edu.neusoft.meal.domain.Food">
+   select * from food order by price limit 1,4
+   </select>
+    <select id="getRecommedFoods" resultType="cn.edu.neusoft.meal.domain.Food">
+   select * from food order by comment limit 1,4
+   </select>
+   <select id="getAllFoods" resultType="cn.edu.neusoft.meal.domain.Food">
+   select * from food
+   </select>
+  <delete id="delFood" parameterType="int">
+		delete from food where id=#{id}
+   </delete>
+   <select id="getMaxId" resultType="java.lang.Integer">
+   select max(id) from food
+   </select>
+   <insert id="addFood" parameterType="cn.edu.neusoft.meal.domain.Food">
+      INSERT INTO food VALUES (#{id}, #{foodName}, #{feature}, #{material}, #{price},#{type}, #{picture}, #{hits}, #{comment})
+   </insert>
+   
+   
+</mapper>

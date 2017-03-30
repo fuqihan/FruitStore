@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="cn.edu.neusoft.meal.mapper.UserDao">
+    <select id="getUserByNameAndPassword" parameterType="user"
+            resultType="user">
+        select * from user where userName=#{userName} AND password=#{password}
+    </select>
+    <select id="findUser" resultType="user">
+        select * from user where userName LIKE #{1} OR name LIKE #{1} LIMIT #{0},5
+    </select>
+    <insert id="addUser" parameterType="user">
+        INSERT INTO user(userName,name,password,telPhone,address) VALUES(#{userName},#{name},#{password},#{telPhone},#{address})
+    </insert>
+    <select id="shopNumber" resultType="int">
+       SELECT COUNT(id) FROM orders where user_id=#{id} and state="未支付"
+</select>
+    <select id="findUserId" resultType="int">
+        SELECT id FROM user where userName=#{userName}
+    </select>
+    <select id="findAdmin" resultType="admin">
+        SELECT * FROM admin where name=#{name} AND password=#{password}
+    </select>
+    <select id="getPages" resultType="long">
+        SELECT COUNT(*) FROM user where userName LIKE #{userSearch} or name LIKE #{userSearch}
+    </select>
+    <select id="findUpdeteUser" resultType="user">
+        SELECT * FROM user where id=#{id}
+    </select>
+    <update id="updateUser" parameterType="user">
+        UPDATE user SET userName=#{userName},name=#{name},telPhone=#{telPhone},password=#{password},address=#{address} where id=#{id}
+    </update>
+    <delete id="deleteUser" parameterType="java.lang.String" >
+        DELETE FROM user where id=#{id}
+    </delete>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.neusoft.core.mapper.OrmDao">
+	
+	<select id="listTables" parameterType="cn.edu.neusoft.core.domain.OrmVO"  resultType="java.lang.String">
+		SELECT Table_Name From information_schema.TABLES where TABLE_SCHEMA = 'weixin' AND Table_Name like '${prefix}%'
+	</select>
+	
+	<select id="listTableCols" parameterType="cn.edu.neusoft.core.domain.OrmVO" resultType="cn.edu.neusoft.core.domain.OrmVO">
+		SELECT COLUMN_NAME as colName, COLUMN_TYPE as colType 
+		From information_schema.COLUMNS 
+		WHERE TABLE_SCHEMA = 'weixin' and TABLE_NAME = '${tableName}';
+	</select>
+	
+</mapper>

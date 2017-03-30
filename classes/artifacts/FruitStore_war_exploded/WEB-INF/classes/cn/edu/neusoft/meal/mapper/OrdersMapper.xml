@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.neusoft.meal.mapper.OrdersDao">
+    
+    <resultMap id="findOrderAdmin" type="orders">
+        <id property="id" column="id"/>
+        <result property="number" column="number"/>
+        <result property="state" column="state"/>
+        <result property="createDate" column="createDate" jdbcType="TIMESTAMP"/>
+        <association property="fruits" javaType="fruits">
+            <result property="id" column="fruits_id"/>
+            <result property="name" column="name"/>
+            <result property="price" column="price"/>
+            <result property="image" column="image"/>
+        </association>
+        <association property="user" javaType="user">
+            <result property="name" column="userName"/>
+        </association>
+    </resultMap>
+    <select id="findOrders" resultMap="findOrderAdmin">
+        SELECT * FROM orders  LEFT OUTER JOIN fruits ON orders.fruits_id=fruits.id
+        LEFT OUTER JOIN user ON orders.user_id=user.id
+    </select>
+    <select id="findOrdersShop" resultMap="findOrderAdmin">
+         SELECT * FROM orders  LEFT OUTER JOIN fruits ON orders.fruits_id=fruits.id
+        LEFT OUTER JOIN user ON orders.user_id=user.id where user.userName=#{name} and state="未支付"
+    </select>
+
+    <delete id="deleteOrder">
+        DELETE FROM orders where id=#{id}
+    </delete>
+    <update id="updateOrders" parameterType="String">
+        UPDATE orders set updeteDate=CURRENT_TIMESTAMP,number=#{0},state="已支付"
+        where id=#{1}
+    </update>
+    <insert id="addShopOrder">
+        INSERT INTO orders (user_id,fruits_id) VALUES (#{0},#{1})
+    </insert>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.neusoft.meal.mapper.FruitsDao">
+    <select id="findHitFruits" resultType="fruits">
+        select * FROM fruits ORDER BY hit desc LIMIT #{a},4
+    </select>
+    <select id="fruitsShop" resultType="fruits">
+        select * FROM fruits where id=#{id}
+    </select>
+
+    <select id="searchFruits" resultType="fruits">
+    SELECT * FROM fruits where name LIKE #{0} or feature LIKE #{0}
+    </select>
+    <select id="searchFruits2" resultType="fruits">
+        SELECT * FROM fruits where name LIKE #{0} or feature LIKE #{0} ORDER BY price
+    </select>
+    <select id="searchFruits1" resultType="fruits">
+        SELECT * FROM fruits where name LIKE #{0} or feature LIKE #{0} ORDER BY createDate
+    </select>
+    <select id="searchFruits3" resultType="fruits">
+        SELECT * FROM fruits where name LIKE #{0} or feature LIKE #{0} ORDER BY hit
+    </select>
+    <select id="findFruitses" resultType="fruits">
+        SELECT * FROM fruits where  name LIKE #{1} OR feature LIKE #{1} LIMIT #{0},5
+    </select>
+    <select id="getPages" resultType="long">
+        SELECT COUNT(*) FROM fruits where name LIKE #{fruitSearch} or feature LIKE #{fruitSearch}
+    </select>
+    <update id="updateFruit" parameterType="fruits">
+       UPDATE fruits SET name=#{name},price=#{price},image=#{image},feature=#{feature}  where id=#{id}
+    </update>
+    <delete id="deleteFruit">
+        DELETE FROM fruits WHERE id=#{id}
+    </delete>
+    <select id="findStoreFruits" resultType="fruits" >
+        SELECT * FROM store  LEFT OUTER JOIN fruits ON store.fruits_id=fruits.id
+        LEFT OUTER JOIN seller ON store.seller_id=seller.id where seller.Name=#{sellerName}
+    </select>
+
+    <insert id="addFruits" parameterType="fruits">
+        INSERT INTO fruits(name,type,price,image,feature) VALUE (#{name},#{type},#{price},#{image},#{feature})
+    </insert>
+    <select id="maxId" resultType="String">
+        SELECT max(id) FROM fruits
+    </select>
+    <insert id="addStore">
+        INSERT INTO store VALUES (null,#{0},#{1})
+    </insert>
+
+</mapper>
+

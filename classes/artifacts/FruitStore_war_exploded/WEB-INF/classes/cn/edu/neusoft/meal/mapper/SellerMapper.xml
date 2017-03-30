@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.neusoft.meal.mapper.SellerDao">
+
+
+<select id="getPages" resultType="long">
+            SELECT COUNT(*) FROM seller where name LIKE #{sellerSearch}
+</select>
+<select id="findSeller" resultType="seller">
+    SELECT * FROM seller where  name LIKE #{1}  LIMIT #{0},5
+</select>
+    <select id="findSellerLogin" resultType="seller">
+        SELECT * FROM seller where sellerName=#{sellerName} and password=#{password}
+    </select>
+<insert id="addSeller"  parameterType="Seller" >
+INSERT INTO seller VALUES(null,#{name},#{tel},#{password},#{address},#{card},#{sellerName})
+</insert>
+
+</mapper>

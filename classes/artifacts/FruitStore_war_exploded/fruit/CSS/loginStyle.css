@@ -1,0 +1,61 @@
+﻿   body
+   {
+    font-size: small;
+    background-image: url('../images/bg.jpg');
+    margin: auto;
+    background-repeat: repeat-x;
+    text-align: center;
+}
+         #main
+        {
+            margin: auto;
+            width: 900px;
+            text-align: center;
+           height:600px;
+}
+        #loginLogo
+        {
+            margin: auto;
+            background:url('../images/task_banner.gif');
+            background-repeat: no-repeat;
+            height: 110px;
+            width: 884px;
+        }
+        #loginForm
+        {
+           margin: auto;
+           background-image: url('../images/userLoginBg.jpg');
+           background-repeat: no-repeat;
+           height: 300px;
+           position: relative;
+           top: 0px;
+           left: 0px;
+        }
+        #loginTable
+{
+    position: absolute;
+    top: 120px;
+    left: 219px;
+    height: 77px;
+    width: 394px;
+    color: #FFFFFF;
+    bottom: 103px;
+}
+    .btn {
+	background-image:url('../images/btn.jpg');
+	height:72px;
+	width: 90px;
+   
+}
+
+ #sidebar {
+     width:160px; /*设定宽度*/
+     text-align:left; /*文字左对齐*/
+     float:left; /*浮动居左*/      
+     overflow:hidden}
+ #PageBody{width:800px;height:500px;background-color:#f0f0f0;}
+　　/*页面底部*/
+　　#Footer{width:800px;height:60px; background:#00FFFF}
+#mainBody{width:590px;text-align:left;float:right; /*浮动居右*/clear:right; /*不允许右侧存在浮动*/overflow:hidden}
+
+

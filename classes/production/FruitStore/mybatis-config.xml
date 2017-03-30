@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="cn.edu.neusoft.meal.domain.Orders" alias="orders"/>
+        <typeAlias type="cn.edu.neusoft.meal.domain.User" alias="user"/>
+        <typeAlias type="cn.edu.neusoft.meal.domain.Fruits" alias="fruits"/>
+        <typeAlias type="cn.edu.neusoft.meal.domain.Seller" alias="seller"/>
+        <typeAlias type="cn.edu.neusoft.meal.domain.Admin" alias="admin"/>
+		<typeAlias type="cn.edu.neusoft.meal.domain.Store" alias="store"/>
+	</typeAliases>
+
+</configuration>
